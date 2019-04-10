@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+
+    <header>
+        <button data-search="Lions"> Lions</button>
+        <button data-search="Tigers">Tigers</button>
+        <button data-search="Wolf"> Wolf</button>
+        <button data-search="Jaguar"> Jaguar</button>
+        <button data-search="Cheetah">Cheetah</button>
+        <button data-search="Dog">Dog</button>
+        <button data-search="cat"> Cat</button>
+        <button data-search="giraffe">Giraffe</button>
+        <button data-search="Elephant">Elephant</button>
+        <button data-search="Monkey">Monkey</button>
+        <button data-search="kangaroo">Kangaroo</button>
+        
+        <form id ="search-form">
+            <label for="search-input">Add your search!!!</label>
+            <input type="text" id="search-input"><br>
+            <input type="submit" values="Submit">
+        </form>
+</header>
+    <script>
+
+
+        
+        $("button").on("click", function () {
+            var x = $(this).data("search");
+            console.log(x);
+           
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q="+x+"&api_key=dc6zaTOxFJmzC";
+                           
+            console.log(queryURL);       
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+        .then(function(response) {
+
+            for (var i = 0; i < 10; i++) {
+            $('body').append("<img src='"+response.data[i].images.downsized.url+"'>");
+            var img =$("img")
+            }     
+        })
+        })
+
+        $("#addSearch").on('click',function(){
+    var newSearch = $('input').eq(0).val();
+})
+    </script>
+
+
+</body>
+
+</html>
